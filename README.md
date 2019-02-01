@@ -1,6 +1,6 @@
 Zhuyin convert to Chinese Word
 ===
-with ELMo and BiLSTM.
+This Project is made with ELMo and BiLSTM.
 
 ## Usage
 ```
@@ -10,3 +10,5 @@ sent> ㄉㄚˋ ㄐㄧㄚ ㄏㄠˇ
 --
 大 家 好
 ```
+
+When running demo, punctuations or English words or numbers are not allow, otherwise it will output some wrong words.
