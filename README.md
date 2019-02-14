@@ -1,6 +1,8 @@
 Zhuyin convert to Chinese Word
 ===
 This Project is made with ELMo and BiLSTM.
+## Requirement
+- download the ELMo model from [here](https://www.dropbox.com/s/kqohf7sypkb26pc/ELMoForManyLangs.zip?dl=1) to the main directory.
 
 ## Usage
 ```
