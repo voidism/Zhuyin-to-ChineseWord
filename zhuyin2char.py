@@ -9,6 +9,7 @@ import math
 from sklearn.metrics import f1_score
 from sklearn.metrics import accuracy_score
 import argparse
+from pypinyin import pinyin, lazy_pinyin, Style
 
 def f2h(s):
     # return re.sub(r"( |　)+", " ", s).strip()
@@ -123,7 +124,7 @@ class Embedder():
         e = e.replace('！', '!')
         return e
 
-def load_embedding(limit=10000):
+def load_vocab(limit=10000):
     __file__ = '.'
     idx2word = ["<pad>","<unk>"] + list(np.load(os.path.join(os.path.dirname(__file__),"CharEmb/idx2word.npy")))[:limit-2]
     word2idx = dict([(word, i) for i, word in enumerate(idx2word)])
@@ -148,7 +149,7 @@ class Utils():
         self.max_len = max_len
         self.train_step_num = math.floor(self.zhuyin_line_num / batch_size)
         self.test_step_num = math.floor(self.test_char_line_num / batch_size)
-        self.idx2word, self.word2idx = load_embedding()
+        self.idx2word, self.word2idx = load_vocab()
 
     def sent2list(self, sent, zy=True):
         sent = f2h(sent)
@@ -279,7 +280,8 @@ class Zhuyin2Char(nn.Module):
                 sent = input("sent> ")
                 if len(sent.strip()) == 0:
                     continue
-                sent = sent.split(' ')
+                # sent = sent.split(' ')
+                sent = [x[0] for x in pinyin(sent, style=Style.BOPOMOFO)]
                 result = self.demo_sent([sent])
                 print("--")
                 print(re.sub(r"[\s|\u3000]+", " ",' '.join(result[0]).strip())+'\n')
