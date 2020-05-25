@@ -8,7 +8,7 @@ This Project is made with ELMo and BiLSTM.
 ```
 $ python zhuyin2char.py live
 model.ckpt load!
-sent> ㄉㄚˋ ㄐㄧㄚ ㄏㄠˇ
+sent> 大家好         // 這裡程式會先幫你轉成注音「ㄉㄚˋ ㄐㄧㄚ ㄏㄠˇ」，之後才讓主程式還原
 --
 大 家 好
 ```
